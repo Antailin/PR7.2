@@ -169,34 +169,34 @@ namespace PR7._2
                 return result;
             }
 
-            /// <summary>
-            /// Расшифровывает один 64-битный блок (32 раунда ГОСТ, порядок ключей обратный).
-            /// Порядок подключей: K0..K7 (8 прямых), затем K7..K0 × 3 (24 обратных).
-            /// </summary>
-            private byte[] DecryptBlock(byte[] block)
-            {
-                uint n1 = BitConverter.ToUInt32(block, 0);
-                uint n2 = BitConverter.ToUInt32(block, 4);
+        /// <summary>
+        /// Расшифровывает один 64-битный блок (32 раунда ГОСТ, порядок ключей обратный).
+        /// Порядок подключей: K0..K7 (8 прямых), затем K7..K0 × 3 (24 обратных).
+        /// </summary>
+        private byte[] DecryptBlock(byte[] block)
+        {
+            uint n1 = BitConverter.ToUInt32(block, 4);
+            uint n2 = BitConverter.ToUInt32(block, 0);
 
-                for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
+                Round(ref n1, ref n2, _subKeys[i]);
+
+            for (int pass = 0; pass < 3; pass++)
+                for (int i = 7; i >= 0; i--)
                     Round(ref n1, ref n2, _subKeys[i]);
 
-                for (int pass = 0; pass < 3; pass++)
-                    for (int i = 7; i >= 0; i--)
-                        Round(ref n1, ref n2, _subKeys[i]);
+            byte[] result = new byte[8];
+            Array.Copy(BitConverter.GetBytes(n2), 0, result, 0, 4);
+            Array.Copy(BitConverter.GetBytes(n1), 0, result, 4, 4);
+            return result;
+        }
 
-                byte[] result = new byte[8];
-                Array.Copy(BitConverter.GetBytes(n1), 0, result, 0, 4);
-                Array.Copy(BitConverter.GetBytes(n2), 0, result, 4, 4);
-                return result;
-            }
+        /// <summary>
+        /// Один раунд преобразования ГОСТ:
+        /// сложение mod 2^32 → S-подстановка → циклический сдвиг на 11 бит → XOR.
+        /// </summary>
 
-            /// <summary>
-            /// Один раунд преобразования ГОСТ:
-            /// сложение mod 2^32 → S-подстановка → циклический сдвиг на 11 бит → XOR.
-            /// </summary>
-
-            private void Round(ref uint n1, ref uint n2, uint subKey)
+        private void Round(ref uint n1, ref uint n2, uint subKey)
             {
                 uint temp = (n1 + subKey) & 0xFFFFFFFF;  
                 temp = SubstituteBlock(temp);              
