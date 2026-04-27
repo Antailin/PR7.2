@@ -59,7 +59,8 @@ Visual Studio.
 **Обозреватель тестов — все 20 тестов пройдены:**
 
 ```
-СКРИНШОТ
+<img width="212" height="464" alt="image" src="https://github.com/user-attachments/assets/7a9b0875-9817-42a1-aaf8-1a53a8af9c2b" />
+
 ```
 
 ---
