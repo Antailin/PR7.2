@@ -1,12 +1,97 @@
 ﻿<Window x:Class="PR7._2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PR7._2"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="ГОСТ 28147-89 — Шифрование"
+        Height="540" Width="620"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#F4F6F8">
+
+    <Window.Resources>
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Foreground"      Value="White"/>
+            <Setter Property="FontSize"        Value="13"/>
+            <Setter Property="FontFamily"      Value="Segoe UI"/>
+            <Setter Property="Height"          Value="38"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="6" Padding="10,4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.82"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.65"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Margin="22">
+
+        <TextBlock Text="🔐 Шифрование ГОСТ 28147-89"
+                   FontFamily="Segoe UI" FontSize="19" FontWeight="Bold"
+                   HorizontalAlignment="Center" Foreground="#1A1A2E"
+                   Margin="0,0,0,18"/>
+
+        <TextBlock Text="Текст:"
+                   FontSize="12" Foreground="#555" Margin="0,0,0,4"/>
+        <TextBox x:Name="txtInput"
+                 Height="95" TextWrapping="Wrap" AcceptsReturn="True"
+                 VerticalScrollBarVisibility="Auto" Margin="0,0,0,12"
+                 FontSize="13" Padding="8,5"
+                 ToolTip="Введите текст для шифрования или Base64-строку для дешифрования."/>
+
+        <TextBlock Text="Ключ (строка, будет приведена к 256 бит):"
+                   FontSize="12" Foreground="#555" Margin="0,0,0,4"/>
+        <PasswordBox x:Name="txtKey"
+                     Height="34" FontSize="13" Padding="8,5"
+                     Margin="0,0,0,18"
+                     ToolTip="Введите ключ (мин. 1 символ). Будет растянут/обрезан до 32 байт."/>
+
+        <UniformGrid Columns="4" Margin="0,0,0,18">
+            <Button Content="🔒 Зашифровать"
+                    Style="{StaticResource ActionButton}"
+                    Background="#4682B4" Margin="0,0,5,0"
+                    Click="btnEncrypt_Click"
+                    ToolTip="Зашифровать текст алгоритмом ГОСТ 28147-89."/>
+            <Button Content="🔓 Дешифровать"
+                    Style="{StaticResource ActionButton}"
+                    Background="#2E8B57" Margin="2,0,3,0"
+                    Click="btnDecrypt_Click"
+                    ToolTip="Расшифровать Base64-строку алгоритмом ГОСТ 28147-89."/>
+            <Button Content="📋 Копировать"
+                    Style="{StaticResource ActionButton}"
+                    Background="#696969" Margin="3,0,2,0"
+                    Click="btnCopy_Click"
+                    ToolTip="Скопировать результат в буфер обмена."/>
+            <Button Content="🗑 Очистить"
+                    Style="{StaticResource ActionButton}"
+                    Background="#CD5C5C" Margin="5,0,0,0"
+                    Click="btnClear_Click"
+                    ToolTip="Очистить все поля."/>
+        </UniformGrid>
+
+        <TextBlock Text="Результат:"
+                   FontSize="12" Foreground="#555" Margin="0,0,0,4"/>
+        <TextBox x:Name="txtOutput"
+                 Height="110" TextWrapping="Wrap" IsReadOnly="True"
+                 VerticalScrollBarVisibility="Auto" Background="#EFEFEF"
+                 FontSize="13" Padding="8,5" Margin="0,0,0,10"
+                 ToolTip="Поле только для чтения — результат операции."/>
+
+        <TextBlock x:Name="lblStatus"
+                   FontFamily="Segoe UI" FontSize="12" FontStyle="Italic"
+                   TextWrapping="Wrap"/>
+    </StackPanel>
 </Window>
