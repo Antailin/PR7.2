@@ -1,9 +1,8 @@
 ﻿using System.Text;
-
+using PR7._2;
 namespace GostCipherTests
 {
         /// <summary>
-        /// Автоматизированные MSTest-тесты для класса <see cref="GostCipher"/>.
         /// Покрывают: обратимость, детерминизм, паддинг, граничные значения,
         /// обработку исключений (негативные сценарии).
         /// </summary>
