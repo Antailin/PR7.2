@@ -25,7 +25,7 @@ Visual Studio.
 
 ## Структура проекта
 
-СКРИНШОТ
+<img width="549" height="600" alt="image" src="https://github.com/user-attachments/assets/2af35397-82b2-4a52-8da2-e3d3a98858e7" />
 
 ---
 
