@@ -33,7 +33,7 @@ Visual Studio.
 
 ## Диаграмма вариантов использования
 ```
-<img width="1100" height="743" alt="image" src="https://github.com/user-attachments/assets/c0611a72-b4b0-4daf-80ab-2ac34c089a39" />
+<img width="974" height="648" alt="image" src="https://github.com/user-attachments/assets/f53d7503-6c3e-44bf-b7bc-1ef6eda2ac1e" />
 ```
 Диаграмма отображает взаимодействие двух акторов с системой:
 - **Пользователь** 
