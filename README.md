@@ -25,16 +25,14 @@ Visual Studio.
 
 ## Структура проекта
 
-```
 СКРИНШОТ
-```
 
 ---
 
 ## Диаграмма вариантов использования
-```
+
 <img width="974" height="648" alt="image" src="https://github.com/user-attachments/assets/f53d7503-6c3e-44bf-b7bc-1ef6eda2ac1e" />
-```
+
 Диаграмма отображает взаимодействие двух акторов с системой:
 - **Пользователь** 
 - **GostCipher** 
@@ -72,10 +70,7 @@ Visual Studio.
 
 **Обозреватель тестов — все 20 тестов пройдены:**
 
-```
 <img width="212" height="464" alt="image" src="https://github.com/user-attachments/assets/7a9b0875-9817-42a1-aaf8-1a53a8af9c2b" />
-
-```
 
 ---
 
